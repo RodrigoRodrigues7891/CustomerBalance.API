@@ -49,7 +49,9 @@ public static class CustomerLedgerExtensions
             var customerLedgers = dalCustomerLedger.Listar();
 
             if (customerLedgers.IsNullOrEmpty())
+            {
                 return Results.NotFound();
+            }
 
             var summaryList = CustomerBalanceSummaryMapper.FromCustomerLedgerList(customerLedgers);
             return Results.Ok(summaryList);
