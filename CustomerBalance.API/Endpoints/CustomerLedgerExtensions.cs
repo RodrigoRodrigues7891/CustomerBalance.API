@@ -40,7 +40,7 @@ public static class CustomerLedgerExtensions
                 .Where(c => c.AID == "O")
                 .Sum(c => c.AG);
 
-            var response = new CustomerLedgerBalanceResponse(an8, balance);
+            var response = CustomerBalanceSummaryMapper.FromCustomerLedgerToBalanceResponse(an8, customerLedgerListByAN8);
             return Results.Ok(response);
         }).WithSummary("Balance Rule: the total balance is the sum of all AG values where AID equals 'O'");
 

@@ -21,5 +21,14 @@ namespace CustomerBalance.API.Mappers
 
             return new CustomerBalanceSummaryResponse(group.Key, balance);
         }
+
+        public static CustomerLedgerBalanceResponse FromCustomerLedgerToBalanceResponse(int an8, IEnumerable<CustomerLedger> customerLedgerList)
+        {
+            var balance = customerLedgerList
+                .Where(c => c.AID == "O")
+                .Sum(c => c.AG);
+
+            return new CustomerLedgerBalanceResponse(an8, balance);
+        }
     }
 }
